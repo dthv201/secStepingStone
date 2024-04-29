@@ -67,11 +67,18 @@ public class MainTrain {
 	}
 	
 	public static void testBloomFilter() {
+		// BloomFilter bf = new BloomFilter(256, "MD5", "SHA1");
+		// bf.add("hello");
+		// bf.add("world");
+		// bf.add("test");
+		// System.out.println(bf.toString());
 		BloomFilter bf =new BloomFilter(256,"MD5","SHA1");
 		String[] words = "the quick brown fox jumps over the lazy dog".split(" ");
 		for(String w : words)
 			bf.add(w);
-		//here 
+
+		
+		System.out.println(bf.toString());
 		if(!bf.toString().equals("0010010000000000000000000000000000000000000100000000001000000000000000000000010000000001000000000000000100000010100000000010000000000000000000000000000000110000100000000000000000000000000010000000001000000000000000000000000000000000000000000000000000001"))
 			System.out.println("problem in the bit vector of the bloom filter (-10)");
 		
@@ -119,12 +126,12 @@ public class MainTrain {
 		testLFU();
 		testCacheManager();
 		testBloomFilter();
-		// try {
-		// 	testIOSearch();
-		// } catch(Exception e) {
-		// 	System.out.println("you got some exception (-10)");
-		// }
-		// testDictionary();
+		try {
+			testIOSearch();
+		} catch(Exception e) {
+			System.out.println("you got some exception (-10)");
+		}
+		testDictionary();
 		System.out.println("done");
 	}
 }

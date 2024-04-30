@@ -49,7 +49,7 @@ public class Dictionary {
     }
     public boolean query(String word)
     {
-        boolean ans = true;
+        
         // now we do the checks :
         
          //look in bloom filter and update cache manager 
@@ -58,26 +58,27 @@ public class Dictionary {
         {
           return true;
         }
-        else if(wordsNotInDictionary.query(word))
+        if(wordsNotInDictionary.query(word))
         {
           return false;
         }
         // if i got here means that it isn't in 2 of the cashes 
-        else
-        {
+        
             if (!bloomFilter.contains(word)) 
             {
                 // System.out.println(word + " is definitely not in the dataset.");
-                ans = false; 
+                
                 wordsNotInDictionary.add(word);
+                return false;
             }
             else
             {
-                ans = true;
+                
                 wordsInDictionary.add(word);
+                return true;
             }
-            return ans;
-        }
+           
+        
         
      
     }
